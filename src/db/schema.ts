@@ -67,14 +67,26 @@ export const roles = pgTable(
   }
 );
 
-export const usersToRoles = pgTable('usersToRoles', {
-  applicationId: uuid('applicationId')
-    .references(() => application.id)
-    .notNull(),
-  roleId: uuid('roleId')
-    .references(() => roles.id)
-    .notNull(),
-  userId: uuid('userId')
-    .references(() => users.id)
-    .notNull(),
-});
+export const usersToRoles = pgTable(
+  'usersToRoles',
+  {
+    applicationId: uuid('applicationId')
+      .references(() => application.id)
+      .notNull(),
+    roleId: uuid('roleId')
+      .references(() => roles.id)
+      .notNull(),
+    userId: uuid('userId')
+      .references(() => users.id)
+      .notNull(),
+  },
+  usersToRoles => {
+    return {
+      cpx: primaryKey(
+        usersToRoles.applicationId,
+        usersToRoles.roleId,
+        usersToRoles.userId
+      ),
+    };
+  }
+);
