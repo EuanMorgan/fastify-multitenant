@@ -8,6 +8,10 @@ export async function buildServer() {
 
   // Register plugins
 
+  await app.register(import('@fastify/rate-limit'), {
+    max: 100,
+    timeWindow: '1 minute',
+  });
   // Register routes
 
   app.register(applicationRoutes, {

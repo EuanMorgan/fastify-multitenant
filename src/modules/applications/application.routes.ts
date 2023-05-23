@@ -11,6 +11,12 @@ export async function applicationRoutes(app: FastifyInstance) {
     '/',
     {
       schema: createApplicationJsonSchema,
+      config: {
+        rateLimit: {
+          max: 3,
+          timeWindow: '1 minute',
+        },
+      },
     },
     createApplicationHandler
   );
