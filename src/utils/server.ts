@@ -1,5 +1,6 @@
 import fastify from 'fastify';
 import {logger} from './logger';
+import {applicationRoutes} from '../modules/applications/application.routes';
 export async function buildServer() {
   const app = fastify({
     logger,
@@ -9,5 +10,8 @@ export async function buildServer() {
 
   // Register routes
 
+  app.register(applicationRoutes, {
+    prefix: '/api/applications',
+  });
   return app;
 }
