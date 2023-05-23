@@ -77,8 +77,11 @@ export async function getUserByEmail({
     return null;
   }
 
+  // A user can have multiple roles.
+  // This combines the permissions into a single array
   const user = result.reduce(
     (acc, curr) => {
+      // Add the initial user permissions
       if (!acc.id) {
         return {
           ...curr,
@@ -86,10 +89,12 @@ export async function getUserByEmail({
         };
       }
 
+      // If there are no permissions, return the accumulator
       if (!curr.permissions) {
         return acc;
       }
 
+      // Loop through the permissions and add them to the accumulator
       for (const permission of curr.permissions) {
         acc.permissions.add(permission);
       }

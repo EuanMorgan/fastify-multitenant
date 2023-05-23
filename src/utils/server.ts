@@ -2,6 +2,7 @@ import fastify from 'fastify';
 import {logger} from './logger';
 import {applicationRoutes} from '../modules/applications/application.routes';
 import {usersRoutes} from '../modules/users/users.routes';
+import {roleRoutes} from '../modules/roles/roles.routes';
 export async function buildServer() {
   const app = fastify({
     logger,
@@ -22,5 +23,10 @@ export async function buildServer() {
   app.register(usersRoutes, {
     prefix: '/api/users',
   });
+
+  app.register(roleRoutes, {
+    prefix: '/api/roles',
+  });
+
   return app;
 }
