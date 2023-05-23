@@ -1,6 +1,8 @@
 import {env} from './config/env';
+import {db} from './db';
 import {logger} from './utils/logger';
 import {buildServer} from './utils/server';
+import {migrate} from 'drizzle-orm/node-postgres/migrator';
 
 async function gracefulShutdown({
   app,
@@ -19,6 +21,12 @@ async function main() {
     port: env.PORT,
     host: env.HOST,
   });
+
+  await migrate(db, {
+    migrationsFolder: './migrations',
+  });
+
+  logger.debug(env, 'Using env');
 
   //   Sigint = signal interrupt, sent when user presses ctrl+c
   //   Sigterm = signal terminate, sent when process manager requests termination

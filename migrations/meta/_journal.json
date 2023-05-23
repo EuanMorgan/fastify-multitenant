@@ -1,0 +1,34 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1684862706431,
+      "tag": "0000_crazy_norrin_radd",
+      "breakpoints": false
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1684862982145,
+      "tag": "0001_aromatic_medusa",
+      "breakpoints": false
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1684863110190,
+      "tag": "0002_fast_sleepwalker",
+      "breakpoints": false
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1684863266115,
+      "tag": "0003_medical_sauron",
+      "breakpoints": false
+    }
+  ]
+}
